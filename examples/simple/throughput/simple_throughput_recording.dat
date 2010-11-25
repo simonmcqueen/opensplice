@@ -1,0 +1,5 @@
+DDSTouchStoneCommand= { kind=ReceiverDef delay= { sec=0 nanosec=50000000 } disposed=FALSE command= { group_id=1001 receiver_id=1 partition_id=1 topic_id=1 topic_kind=BEST_EFFORT scheduling_class=TIMESHARING thread_priority=0 report_period=10000 polling_period=10 } }
+DDSTouchStoneCommand= { kind=TransmitterDef delay= { sec=2 nanosec=0 } disposed=FALSE command= { group_id=2001 transmitter_id=1 partition_id=1 topic_id=1 topic_kind=BEST_EFFORT scheduling_class=TIMESHARING thread_priority=0 message_size=512 messages_per_burst=55 burst_period=50 } }
+DDSTouchStoneCommand= { kind=TransmitterDef delay= { sec=300 nanosec=0 } disposed=TRUE command= { group_id=2001 transmitter_id=1 partition_id=1 topic_id=1 topic_kind=BEST_EFFORT scheduling_class=TIMESHARING thread_priority=0 message_size=512 messages_per_burst=55 burst_period=50 } }
+DDSTouchStoneCommand= { kind=ReceiverDef delay= { sec=0 nanosec=50000000 } disposed=TRUE command= { group_id=1001 receiver_id=1 partition_id=1 topic_id=1 topic_kind=BEST_EFFORT scheduling_class=TIMESHARING thread_priority=0 report_period=10000 polling_period=10 } }
+
