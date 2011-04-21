@@ -1900,7 +1900,6 @@ process_transmitterDef (
             _this->wQos = NULL;
             _this->writer = NULL;
 
-            // theadId may be sctucture this is correct initialization.
             memset(&(_this->threadId), 0, sizeof(_this->threadId));
 
             interval.tv_sec = _this->config.burst_period / 1000;
@@ -2704,7 +2703,6 @@ process_receiverDef (
             _this->rQos = NULL;
             _this->reader = NULL;
 
-            // theadId may be sctucture this is correct initialization.
             memset(&(_this->threadId), 0, sizeof(_this->threadId));
             memset(&(_this->reportThreadId), 0, sizeof(_this->reportThreadId));
 
@@ -3756,7 +3754,6 @@ process_transceiverDef (
             _this->writer = NULL;
             _this->reader = NULL;
 
-            // theadId may be sctucture this is correct initialization.
             memset(&(_this->writerThreadId), 0, sizeof(_this->writerThreadId));
             memset(&(_this->readerThreadId), 0, sizeof(_this->readerThreadId));
             memset(&(_this->reportThreadId), 0, sizeof(_this->reportThreadId));
@@ -4508,7 +4505,6 @@ process_transponderDef (
             _this->writer = NULL;
             _this->reader = NULL;
 
-            // theadId may be sctucture this is correct initialization.
             memset(&(_this->threadId), 0, sizeof(_this->threadId));
 
             _this->active = FALSE;
