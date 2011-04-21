@@ -1899,7 +1899,10 @@ process_transmitterDef (
             _this->topic = NULL;
             _this->wQos = NULL;
             _this->writer = NULL;
-            _this->threadId = 0;
+
+            // theadId may be sctucture this is correct initialization.
+            memset(&(_this->threadId), 0, sizeof(_this->threadId));
+
             interval.tv_sec = _this->config.burst_period / 1000;
             interval.tv_nsec = (_this->config.burst_period % 1000) * 1000000;
             _this->timer = touchstone_os_timerCreate(interval);
@@ -2700,8 +2703,11 @@ process_receiverDef (
             _this->topic = NULL;
             _this->rQos = NULL;
             _this->reader = NULL;
-            _this->threadId = 0;
-            _this->reportThreadId = 0;
+
+            // theadId may be sctucture this is correct initialization.
+            memset(&(_this->threadId), 0, sizeof(_this->threadId));
+            memset(&(_this->reportThreadId), 0, sizeof(_this->reportThreadId));
+
             _this->active = FALSE;
             _this->owner = p;
             _this->waitset = DDS_WaitSet__alloc ();
@@ -3749,9 +3755,12 @@ process_transceiverDef (
             _this->rQos = NULL;
             _this->writer = NULL;
             _this->reader = NULL;
-            _this->writerThreadId = 0;
-            _this->readerThreadId = 0;
-            _this->reportThreadId = 0;
+
+            // theadId may be sctucture this is correct initialization.
+            memset(&(_this->writerThreadId), 0, sizeof(_this->writerThreadId));
+            memset(&(_this->readerThreadId), 0, sizeof(_this->readerThreadId));
+            memset(&(_this->reportThreadId), 0, sizeof(_this->reportThreadId));
+
             interval.tv_sec = _this->config.write_period / 1000;
             interval.tv_nsec = (_this->config.write_period % 1000) * 1000000;
             _this->timer = touchstone_os_timerCreate(interval);
@@ -4498,7 +4507,10 @@ process_transponderDef (
             _this->rQos = NULL;
             _this->writer = NULL;
             _this->reader = NULL;
-            _this->threadId = 0;
+
+            // theadId may be sctucture this is correct initialization.
+            memset(&(_this->threadId), 0, sizeof(_this->threadId));
+
             _this->active = FALSE;
             _this->owner = p;
             _this->waitset = DDS_WaitSet__alloc ();

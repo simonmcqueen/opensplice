@@ -25,6 +25,11 @@
 #ifndef DDSHELP_DDS_ERROR_H
 #define DDSHELP_DDS_ERROR_H
 
+#ifdef _MSC_VER
+// Some code uses '*this' in initialisers
+#pragma warning(disable:4355)
+#endif
+
 #include <ccpp_dds_dcps.h>
 #include <iostream>
 
