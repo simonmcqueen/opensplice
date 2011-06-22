@@ -1848,7 +1848,7 @@ dispose_transmitterDef (
                          "touchstone_os_threadWaitExit failed",
                          result);
             }
-            DDS_free(_this->query);
+            DDS_DataReader_delete_readcondition(tqr, _this->query);
             DDS_free(_this->wQos);
             transmitter_del_topic(_this);
             ref = &p->transmitters;
@@ -2090,7 +2090,6 @@ receiver_del_reader (
                           "Detach condition from waitset failed",
                           retcode);
             } else {
-                DDS_free(_this->condition);
                 _this->condition = NULL;
             }
         }
@@ -2651,7 +2650,7 @@ dispose_receiverDef (
                          "touchstone_os_threadWaitExit receiver thread failed",
                          result);
             }
-            DDS_free(_this->query);
+            DDS_DataReader_delete_readcondition(rqr, _this->query);
             DDS_free(_this->rQos);
             DDS_free(_this->waitset);
             receiver_del_topic(_this);
@@ -2879,7 +2878,6 @@ transceiver_del_reader (
                           "Detach condition from waitset failed",
                           retcode);
             } else {
-                DDS_free(_this->condition);
                 _this->condition = NULL;
             }
         }
@@ -3698,7 +3696,7 @@ dispose_transceiverDef (
                          "touchstone_os_threadWaitExit failed for writerThread",
                          result);
             }
-            DDS_free(_this->query);
+            DDS_DataReader_delete_readcondition(sqr, _this->query);
             DDS_free(_this->wQos);
             DDS_free(_this->rQos);
             DDS_free(_this->waitset);
@@ -3964,7 +3962,6 @@ transponder_del_reader (
                           "Detach condition from waitset failed",
                           retcode);
             } else {
-                DDS_free(_this->condition);
                 _this->condition = NULL;
             }
         }
@@ -4451,7 +4448,7 @@ dispose_transponderDef (
                          "touchstone_os_threadWaitExit failed",
                          result);
             }
-            DDS_free(_this->query);
+            DDS_DataReader_delete_readcondition(xqr, _this->query);
             DDS_free(_this->wQos);
             DDS_free(_this->rQos);
             transponder_del_topics(_this);
