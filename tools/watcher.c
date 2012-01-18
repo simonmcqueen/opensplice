@@ -36,7 +36,7 @@
 /* static char *DDSTouchStoneCommandPartition = "DDSTouchStoneCommands"; */ /* Not used */
 static char *DDSTouchStoneReportPartition =  "DDSTouchStoneReports";
 
-static DDS_DomainId_t               WatcherDomain      = DDS_OBJECT_NIL;
+static DDS_DomainId_t               WatcherDomain      = DDS_DOMAIN_ID_DEFAULT;
 static DDS_DomainParticipantFactory WatcherFactory     = DDS_OBJECT_NIL;
 static DDS_DomainParticipant        WatcherParticipant = DDS_OBJECT_NIL;
 static DDS_Subscriber               WatcherSubscriber  = DDS_OBJECT_NIL;

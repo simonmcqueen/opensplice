@@ -26,7 +26,7 @@ import DDS.*;
 
 public class ParticipantMgr {
     private final static DomainParticipantFactory sm_factory = DomainParticipantFactory.get_instance();
-    private String m_domain_id;
+    private int m_domain_id;
     private DomainParticipant m_participant;
 
     public ParticipantMgr() {}
@@ -39,7 +39,7 @@ public class ParticipantMgr {
 	return m_participant;
     }
 
-    public void	create(String domain_id,
+    public void	create(int domain_id,
 		       DomainParticipantQos participant_qos) {
 	destroy();
 	m_domain_id = domain_id;
@@ -52,7 +52,7 @@ public class ParticipantMgr {
 	      "DomainParticipantFactory::create_participant");
     }
 
-    public void	create(String domain_id) {
+    public void	create(int domain_id) {
 	create(domain_id,
 	       PARTICIPANT_QOS_DEFAULT.value);
     }
@@ -63,7 +63,7 @@ public class ParticipantMgr {
 	    check(retcode,
 		  "DomainParticipantFactory::delete_participant");
 	    m_participant = null;
-	    m_domain_id = null;
+	    m_domain_id = DOMAIN_ID_DEFAULT.value;
 	}
     }
 
@@ -71,7 +71,7 @@ public class ParticipantMgr {
 		      String operation) {
 	DDSError.check(retcode,
 		       operation,
-		       m_domain_id);
+               "Domain ID " + m_domain_id );
     }
 
     public void check(Object object,
@@ -80,6 +80,6 @@ public class ParticipantMgr {
 	DDSError.check(object,
 		       description,
 		       operation,
-		       m_domain_id);
+		       "Domain ID " + m_domain_id );
     }
 }

@@ -31,7 +31,7 @@ public class Processor {
     private final String m_application_name;
     private final int m_application_id;
     private final int m_group_id;
-    private final String m_domain_id;
+    private final int m_domain_id;
     /* private int m_random_id; */
 
     private final Time_tHolder m_time; // REVISIT - locking?
@@ -197,7 +197,7 @@ public class Processor {
     public Processor(String application_name,
 		     int application_id,
 		     int group_id,
-		     String domain_id) {
+		     int domain_id) {
 	// System.out.println("Processor.Processor()");
 
 	m_application_name = application_name;
@@ -535,7 +535,7 @@ public class Processor {
 	return m_group_id;
     }
 
-    public String domain_id() {
+    public int domain_id() {
 	return m_domain_id;
     }
 

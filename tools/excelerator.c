@@ -168,7 +168,7 @@ process_receiverReport (
     DDS_Time_t *arrival_time)
 {
     char output[MAX_OUTPUT_LENGTH];
-    snprintf(output, MAX_OUTPUT_LENGTH,  "Receiver,%d,%d,%d,%.0f,%.0f,%d,%d,%d,",
+    snprintf(output, MAX_OUTPUT_LENGTH,  "Receiver,%d,%d,%d,%.0f,%.0f,%d,%d,",
            report->application_id,
            report->partition_id,
            report->receiver_id,

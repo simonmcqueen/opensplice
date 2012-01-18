@@ -32,14 +32,14 @@ ParticipantMgr::create(DomainId_t domain_id,
 {
   destroy();
 
-  m_domain_id = string_dup(domain_id);
+  m_domain_id = domain_id;
 
   if (!sm_factory)
     {
       sm_factory = DomainParticipantFactory::get_instance();
       if (!sm_factory)
 	{
-	  throw DDSError("returned 0", "DomainParticipantFactory::get_instance", m_domain_id);
+	  throw DDSError("returned 0", "DomainParticipantFactory::get_instance", "");
 	}
     }
 
@@ -49,7 +49,7 @@ ParticipantMgr::create(DomainId_t domain_id,
 						 ANY_STATUS);
   if (!m_participant)
     {
-      throw DDSError("DOMAIN_NOT_RUNNING", "DomainParticipantFactory::create_participant", m_domain_id);
+      throw DDSError("DOMAIN_NOT_RUNNING", "DomainParticipantFactory::create_participant", "");
     }
 }
 
@@ -63,7 +63,7 @@ ParticipantMgr::destroy()
       ReturnCode_t retcode = sm_factory->delete_participant(m_participant);
       if (retcode != RETCODE_OK)
 	{
-	  throw DDSError(retcode, "DomainParticipantFactory::delete_participant", m_domain_id);
+	  throw DDSError(retcode, "DomainParticipantFactory::delete_participant", "");
 	}
 
       m_participant = 0;

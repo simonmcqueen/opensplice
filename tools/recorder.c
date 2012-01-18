@@ -49,7 +49,7 @@
 static char *DDSTouchStoneCommandPartition = "DDSTouchStoneCommands";
 /* static char *DDSTouchStoneReportPartition =  "DDSTouchStoneReports"; */ /* Not used */
 
-static DDS_DomainId_t               RecorderDomain      = DDS_OBJECT_NIL;
+static DDS_DomainId_t               RecorderDomain      = DDS_DOMAIN_ID_DEFAULT;
 static DDS_DomainParticipantFactory RecorderFactory     = DDS_OBJECT_NIL;
 static DDS_DomainParticipant        RecorderParticipant = DDS_OBJECT_NIL;
 static DDS_Subscriber               RecorderSubscriber  = DDS_OBJECT_NIL;
@@ -1115,9 +1115,11 @@ main (
     tQos->durability.kind = DDS_TRANSIENT_DURABILITY_QOS;
 
     wQos = DDS_DataWriterQos__alloc();
+    DDS_Publisher_get_default_datawriter_qos(RecorderPublisher, wQos);
     DDS_Publisher_copy_from_topic_qos(RecorderPublisher, wQos, tQos);
 
     rQos = DDS_DataReaderQos__alloc();
+    DDS_Subscriber_get_default_datareader_qos(RecorderSubscriber, rQos);
     DDS_Subscriber_copy_from_topic_qos(RecorderSubscriber, rQos, tQos);
 
     /*

@@ -72,7 +72,7 @@ main(int argc,
       Processor processor(argv[0],
 			  application_id,
 			  group_id,
-			  0);
+			  DDS::DOMAIN_ID_DEFAULT);
       processor_ptr = &processor;
 
       processor.run();

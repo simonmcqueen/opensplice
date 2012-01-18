@@ -22,6 +22,8 @@
 
 package touchstone;
 
+import DDS.DOMAIN_ID_DEFAULT;
+
 class Main {
     private static Processor sm_processor;
 
@@ -49,7 +51,7 @@ class Main {
 	    sm_processor = new Processor(application_name,
 					 application_id,
 					 group_id,
-					 null);
+					 DOMAIN_ID_DEFAULT.value);
 
 	    sm_processor.run();
 	    // System.out.println("run returned");

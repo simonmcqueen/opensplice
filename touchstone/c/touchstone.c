@@ -98,7 +98,7 @@ static long application_id = 0;
 static long group_id = 0;
 /* static unsigned long random_id = 0; */
 
-static DDS_DomainId_t               DDSTouchStoneDomain      = DDS_OBJECT_NIL;
+static DDS_DomainId_t               DDSTouchStoneDomain      = DDS_DOMAIN_ID_DEFAULT;
 static DDS_DomainParticipantFactory DDSTouchStoneFactory     = DDS_OBJECT_NIL;
 static DDS_DomainParticipant        DDSTouchStoneParticipant = DDS_OBJECT_NIL;
 static DDS_Subscriber               DDSTouchStoneSubscriber  = DDS_OBJECT_NIL;
@@ -768,6 +768,7 @@ main (
     }
 
     wQos = DDS_DataWriterQos__alloc();
+    DDS_Publisher_get_default_datawriter_qos(ReportPublisher, wQos);
     DDS_Publisher_copy_from_topic_qos(ReportPublisher, wQos, tQos);
 
     erw = DDS_Publisher_create_datawriter(
@@ -810,6 +811,7 @@ main (
     }
 
     rQos = DDS_DataReaderQos__alloc();
+    DDS_Subscriber_get_default_datareader_qos(DDSTouchStoneSubscriber, rQos);
     DDS_Subscriber_copy_from_topic_qos(DDSTouchStoneSubscriber, rQos, tQos);
 
     /*
