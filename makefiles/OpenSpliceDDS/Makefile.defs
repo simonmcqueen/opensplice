@@ -31,8 +31,8 @@ GENERATED_C_FILES      += $(IDL:.idl=SplDcps.h)
 GENERATED_C_FILES      += $(IDL:.idl=SplDcps.c)
 GENERATED_C_OBJS       := $(IDL:.idl=SacDcps.o)
 GENERATED_C_OBJS       += $(IDL:.idl=SplDcps.o)
-DDS_C_INCLUDE_DIRS     := $(OSPL_HOME)/include/dcps/C/SAC
-DDS_C_LIBS             := dcpssac dcpsgapi ddsutil ddsdatabase ddsuser ddskernel ddsserialization ddsconf ddsconfparser ddsos 
+DDS_C_INCLUDE_DIRS     := $(OSPL_HOME)/include/dcps/C/SAC $(OSPL_HOME)/include $(OSPL_HOME)/include/sys
+DDS_C_LIBS             := dcpssac dcpsgapi ddsutil ddsdatabase ddsuser ddskernel ddsserialization ddsconf ddsconfparser ddsos m rt
 
 GENERATED_CPP_FILES    := $(IDL:.idl=.h)
 GENERATED_CPP_FILES    += $(IDL:.idl=.cpp)
@@ -47,8 +47,8 @@ GENERATED_CPP_OBJS     := $(IDL:.idl=.o)
 GENERATED_CPP_OBJS     += $(IDL:.idl=Dcps.o)
 GENERATED_CPP_OBJS     += $(IDL:.idl=Dcps_impl.o)
 GENERATED_CPP_OBJS     += $(IDL:.idl=SplDcps.o)
-DDS_CPP_INCLUDE_DIRS   := $(OSPL_HOME)/include/dcps/C++/SACPP
-DDS_CPP_LIBS           := dcpssacpp dcpsgapi ddsutil ddsdatabase ddsuser ddskernel ddsserialization ddsconf ddsconfparser ddsos
+DDS_CPP_INCLUDE_DIRS   := $(OSPL_HOME)/include/dcps/C++/SACPP $(OSPL_HOME)/include $(OSPL_HOME)/include/sys
+DDS_CPP_LIBS           := dcpssacpp dcpsgapi ddsutil ddsdatabase ddsuser ddskernel ddsserialization ddsconf ddsconfparser ddsos m rt
 
 DDS_LIB_DIRS           := $(OSPL_HOME)/lib
 
