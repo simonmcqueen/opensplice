@@ -34,8 +34,8 @@ echo
 
 TOUCHSTONE_HOME=`pwd | sed 's~^/nfs/[^/]*~~'`
 
-C_COPTIONS="-g -m32"
-CPP_COPTIONS="-g -m32"
+C_COPTIONS="-g"
+CPP_COPTIONS="-g"
 
 # Select DDS vendor...
 #DDS_VENDORS=`ls vendor`
