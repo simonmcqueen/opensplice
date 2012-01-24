@@ -79,7 +79,7 @@ then
     if [ -z "$CPP_COMPILER" ]
     then
         echo GNU compiler not found, looking for SunStudio
-        CPP_CNAME=cc
+        CPP_CNAME=CC
         CPP_COMPILER=`type $CPP_CNAME`
         CPP_COMPILER=`echo $CPP_COMPILER | sed "s/$CPP_CNAME not found//g"`
         if [ -z "$CPP_COMPILER" ]
