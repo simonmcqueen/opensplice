@@ -77,7 +77,7 @@ $(GEN_OBJ_DIR)/%.o:$(GEN_DIR)/%.cpp
 
 $(OBJ_DIR)/%.o:$(OS_DIR)/%.c
 	@echo Compiling OS abstraction layer file $<; \
-	$(CPP_COMPILER) $(CPP_COPTIONS) -c $< -o $@ $(call idirs, $(OS_INCLUDE_DIRS))
+	$(CPP_COMPILER) $(CPP_COPTIONS) -c $< -o $@ $(call idirs, $(OS_INCLUDE_DIRS) $(DDS_C_INCLUDE_DIRS))
 
 $(OBJ_DIR)/%.o:$(TOUCHSTONE_DIR)/%.cpp
 	@echo Compiling touchstone file $<; \
