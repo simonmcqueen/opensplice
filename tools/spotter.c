@@ -35,7 +35,7 @@
 
 static char *DDSTouchStoneReportPartition =  "DDSTouchStoneReports";
 
-static DDS_DomainId_t               SpotterDomain      = DDS_OBJECT_NIL;
+static DDS_DomainId_t               SpotterDomain      = DDS_DOMAIN_ID_DEFAULT;
 static DDS_DomainParticipantFactory SpotterFactory     = DDS_OBJECT_NIL;
 static DDS_DomainParticipant        SpotterParticipant = DDS_OBJECT_NIL;
 static DDS_Subscriber               SpotterSubscriber  = DDS_OBJECT_NIL;

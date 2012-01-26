@@ -38,7 +38,7 @@
 /* static char *DDSTouchStoneCommandPartition = "DDSTouchStoneCommands"; */ /* Not used */
 static char *DDSTouchStoneReportPartition =  "DDSTouchStoneReports";
 
-static DDS_DomainId_t               ExceleratorDomain      = DDS_OBJECT_NIL;
+static DDS_DomainId_t               ExceleratorDomain      = DDS_DOMAIN_ID_DEFAULT;
 static DDS_DomainParticipantFactory ExceleratorFactory     = DDS_OBJECT_NIL;
 static DDS_DomainParticipant        ExceleratorParticipant = DDS_OBJECT_NIL;
 static DDS_Subscriber               ExceleratorSubscriber  = DDS_OBJECT_NIL;
