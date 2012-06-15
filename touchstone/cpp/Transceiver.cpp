@@ -473,7 +473,7 @@ Transceiver::read_latency_message(Condition_ptr condition)
       timestamp write_time = message.write_timestamp;
       timestamp echo_time = message.echo_timestamp;
       timestamp source_time = Processor::to_timestamp(info.source_timestamp);
-      timestamp arrival_time = read_time; // REVISIT - should be Processor::to_timestamp(info.arrival_timestamp);
+      timestamp arrival_time = read_time; // REVISIT - should be Processor::to_timestamp(info.reception_timestamp);
 
       m_send_latency.add(message.send_latency);
       m_echo_latency.add(read_time - echo_time);

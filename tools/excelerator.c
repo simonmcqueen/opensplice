@@ -433,7 +433,7 @@ process_command (
                     process_transmitterReport(
                         &trl._buffer[i],
                         &infoList._buffer[i].source_timestamp,
-                        &infoList._buffer[i].arrival_timestamp);
+                        &infoList._buffer[i].reception_timestamp);
                 }
                 result = DDSTouchStone_transmitterReportDataReader_return_loan (
                              trr, &trl, &infoList);
@@ -449,7 +449,7 @@ process_command (
                     process_receiverReport(
                         &rrl._buffer[i],
                         &infoList._buffer[i].source_timestamp,
-                        &infoList._buffer[i].arrival_timestamp);
+                        &infoList._buffer[i].reception_timestamp);
                 }
                 result = DDSTouchStone_receiverReportDataReader_return_loan (
                              rrr, &rrl, &infoList);
@@ -465,7 +465,7 @@ process_command (
                     process_transceiverReport(
                         &srl._buffer[i],
                         &infoList._buffer[i].source_timestamp,
-                        &infoList._buffer[i].arrival_timestamp);
+                        &infoList._buffer[i].reception_timestamp);
                 }
                 result = DDSTouchStone_transceiverReportDataReader_return_loan (
                              srr, &srl, &infoList);
@@ -481,7 +481,7 @@ process_command (
                     process_transponderReport(
                         &xrl._buffer[i],
                         &infoList._buffer[i].source_timestamp,
-                        &infoList._buffer[i].arrival_timestamp);
+                        &infoList._buffer[i].reception_timestamp);
                 }
                 result = DDSTouchStone_transponderReportDataReader_return_loan (
                              xrr, &xrl, &infoList);
@@ -497,7 +497,7 @@ process_command (
                     process_discoveryReport(
                         &drl._buffer[i],
                         &infoList._buffer[i].source_timestamp,
-                        &infoList._buffer[i].arrival_timestamp);
+                        &infoList._buffer[i].reception_timestamp);
                 }
                 result = DDSTouchStone_discoveryReportDataReader_return_loan (
                              drr, &drl, &infoList);
@@ -513,7 +513,7 @@ process_command (
                     process_errorReport(
                         &erl._buffer[i],
                         &infoList._buffer[i].source_timestamp,
-                        &infoList._buffer[i].arrival_timestamp);
+                        &infoList._buffer[i].reception_timestamp);
                 }
                 result = DDSTouchStone_errorReportDataReader_return_loan (
                              err, &erl, &infoList);

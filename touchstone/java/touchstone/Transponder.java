@@ -375,7 +375,7 @@ public class Transponder {
 	    // generate echo message
 	    double write_time = message.write_timestamp;
 	    double source_time = Processor.to_timestamp(info.source_timestamp);
-	    double arrival_time = read_time; // REVISIT - should be Processor::to_timestamp(info.arrival_timestamp);
+	    double arrival_time = read_time; // REVISIT - should be Processor::to_timestamp(info.reception_timestamp);
 	    message.send_latency = read_time - write_time;
 	    message.echo_timestamp = processor().get_timestamp();
 	    message.source_latency = source_time - write_time;

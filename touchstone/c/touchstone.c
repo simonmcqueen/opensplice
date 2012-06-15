@@ -3134,7 +3134,7 @@ transceiverReaderThread(
                 sourceTime = get_timestamp_from_dds_time(
                                  &infoList._buffer[i].source_timestamp);
                 arrivalTime = get_timestamp_from_dds_time(
-                                 &infoList._buffer[i].arrival_timestamp);
+                                 &infoList._buffer[i].reception_timestamp);
                 metrics_add_stamp(_this->send_source_latency,
                             dataList._buffer[i].source_latency);
                 metrics_add_stamp(_this->send_arrival_latency,
@@ -4087,7 +4087,7 @@ transponderThread(
                         sourceTime = get_timestamp_from_dds_time(
                                          &infoList._buffer[i].source_timestamp);
                         arrivalTime = get_timestamp_from_dds_time(
-                                         &infoList._buffer[i].arrival_timestamp);
+                                         &infoList._buffer[i].reception_timestamp);
                         dataList._buffer[i].send_latency = readTime - writeTime;
                         dataList._buffer[i].echo_timestamp = get_timestamp();
                         dataList._buffer[i].source_latency = sourceTime - writeTime;

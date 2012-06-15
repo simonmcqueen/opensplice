@@ -375,7 +375,7 @@ Transponder::read_latency_message(Condition_ptr condition)
 
       timestamp write_time = message.write_timestamp;
       timestamp source_time = Processor::to_timestamp(info.source_timestamp);
-      timestamp arrival_time = read_time; // REVISIT - should be Processor::to_timestamp(info.arrival_timestamp);
+      timestamp arrival_time = read_time; // REVISIT - should be Processor::to_timestamp(info.reception_timestamp);
 
       message.send_latency = read_time - write_time;
       message.echo_timestamp = processor().get_timestamp();
