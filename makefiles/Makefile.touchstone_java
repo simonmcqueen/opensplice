@@ -1,0 +1,111 @@
+#
+# DDSTouchStone: a scenario-driven Open Source benchmarking framework
+# for evaluating the performance of OMG DDS compliant implementations.
+#
+# Copyright (C) 2008-2009 PrismTech Ltd.
+# ddstouchstone@prismtech.com
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License Version 3 dated 29 June 2007, as published by the
+# Free Software Foundation.
+
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with DDSTouchStone; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+include $(CONFIG_DIR)/Makefile.defs_java
+
+.PHONY: clean
+
+STAMP_NAME	 := .STAMP
+
+TOUCHSTONE       := touchstone
+TOUCHSTONE_DIR	 := $(TOUCHSTONE)/java
+TOUCHSTONE_ITEMS := Main
+TOUCHSTONE_ITEMS += Partition
+TOUCHSTONE_ITEMS += Processor
+TOUCHSTONE_ITEMS += Receiver
+TOUCHSTONE_ITEMS += Transceiver
+TOUCHSTONE_ITEMS += Transmitter
+TOUCHSTONE_ITEMS += Transponder
+
+DDSHELP          := ddshelp
+DDSHELP_DIR      := $(DDSHELP)/java
+DDSHELP_ITEMS    := Attachment
+DDSHELP_ITEMS    += ConditionMgr
+DDSHELP_ITEMS    += DDSError
+DDSHELP_ITEMS    += Dispatcher
+DDSHELP_ITEMS    += EntityMgr
+DDSHELP_ITEMS    += FilteredTopicMgr
+DDSHELP_ITEMS    += GuardConditionMgr
+DDSHELP_ITEMS    += Handler
+DDSHELP_ITEMS    += ParticipantMgr
+DDSHELP_ITEMS    += PublisherMgr
+DDSHELP_ITEMS    += QueryConditionMgr
+DDSHELP_ITEMS    += ReadConditionMgr
+DDSHELP_ITEMS    += ReaderMgr
+DDSHELP_ITEMS    += StatusConditionMgr
+DDSHELP_ITEMS    += SubscriberMgr
+DDSHELP_ITEMS    += TopicDescriptionMgr
+DDSHELP_ITEMS    += TopicMgr
+DDSHELP_ITEMS    += WriterMgr
+
+TOUCHSTONE_MODULE := DDSTouchStone
+
+
+TOUCHSTONE_OBJS  := $(addprefix $(OBJ_DIR)/$(TOUCHSTONE)/,$(addsuffix .class,$(TOUCHSTONE_ITEMS)))
+TOUCHSTONE_JAR   := $(BIN_CONFIG_DIR)/$(TOUCHSTONE).jar
+DDSHELP_OBJS     := $(addprefix $(OBJ_DIR)/$(DDSHELP)/,$(addsuffix .class,$(DDSHELP_ITEMS)))
+GEN_DIR          := $(GEN_BASE_DIR)/java
+GEN_FILES	 := $(addprefix $(GEN_DIR)/,$(GENERATED_JAVA_FILES))
+GEN_OBJ_DIR      := $(OBJ_DIR)
+GEN_OBJS	 := $(addprefix $(GEN_OBJ_DIR)/,$(GENERATED_JAVA_OBJS))
+
+all: jar
+jar: compile $(BIN_CONFIG_DIR)/$(STAMP_NAME) $(TOUCHSTONE_JAR)
+compile: generated $(OBJ_DIR)/$(STAMP_NAME) $(GEN_OBJ_DIR)/$(STAMP_NAME) $(TOUCHSTONE_OBJS)
+generated: $(GEN_DIR)/$(STAMP_NAME) $(GEN_FILES)
+
+$(GEN_FILES): $(GEN_DIR)/$(STAMP_NAME) $(IDL_NAME)
+	@echo Creating type-specific Java code from $(IDL_DIR)/$(IDL); \
+	sh $(TOUCHSTONE_HOME)/$(SCRIPTS_DIR)/$(DDS_VENDOR)/idlCompilation.sh $(IDL_DIR)/$(IDL) $(GEN_DIR) java
+
+$(GEN_OBJ_DIR)/%.class:$(GEN_DIR)/%.java
+	@echo Compiling generated file $<; \
+	$(JAVA_COMPILER) $(JAVA_COPTIONS) -sourcepath $(GEN_DIR) -d $(GEN_OBJ_DIR) $<
+
+$(OBJ_DIR)/$(TOUCHSTONE)/%.class:$(TOUCHSTONE_DIR)/$(TOUCHSTONE)/%.java
+	@echo Compiling touchstone file $<; \
+	$(JAVA_COMPILER) $(JAVA_COPTIONS) -sourcepath $(TOUCHSTONE_DIR) -classpath $(OBJ_DIR):$(DDS_JARS) -d $(OBJ_DIR) $<
+
+
+$(OBJ_DIR)/$(DDSHELP)/%.class:$(DDSHELP_DIR)/$(DDSHELP)/%.java
+	@echo Compiling ddshelp file $<; \
+	$(JAVA_COMPILER) $(JAVA_COPTIONS) -sourcepath $(DDSHELP_DIR) -d $(OBJ_DIR) $<
+
+$(TOUCHSTONE_JAR):
+	@echo Creating touchstone jar file; \
+	jar cf $@ -C $(OBJ_DIR) $(TOUCHSTONE_MODULE) -C $(OBJ_DIR) $(DDSHELP) -C $(OBJ_DIR) $(TOUCHSTONE)
+
+$(TOUCHSTONE_OBJS): $(DDSHELP_OBJS) $(GEN_OBJS)
+$(DDSHELP_OBJS): $(GEN_OBJS)
+
+$(TOUCHSTONE_JAR): $(TOUCHSTONE_OBJS) $(DDSHELP_OBJS) $(GEN_OBJS)
+
+%/$(STAMP_NAME):
+	@mkdir -p $(@D); \
+	touch $@
+
+ALL_FILES :=  $(TOUCHSTONE_OBJS) $(DDSHELP_OBJS) $(GEN_OBJS) $(TOUCHSTONE_JAR)
+
+clean:
+	@for ff in $(ALL_FILES); do if test -f $$ff; then echo Removing file $$ff; rm $$ff; fi; done; 
+
+#dependencies are filled manually here... 
+#TODO

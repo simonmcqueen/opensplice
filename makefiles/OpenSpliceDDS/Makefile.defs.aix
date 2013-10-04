@@ -1,0 +1,58 @@
+#
+# DDSTouchStone: a scenario-driven Open Source benchmarking framework
+# for evaluating the performance of OMG DDS compliant implementations.
+#
+# Copyright (C) 2008-2009 PrismTech Ltd.
+# ddstouchstone@prismtech.com
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License Version 3 dated 29 June 2007, as published by the
+# Free Software Foundation.
+
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with DDSTouchStone; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+# Vendor specific information about generated files, inlcude dirs and libraries
+
+# OpenSplice
+
+GENERATED_C_FILES      := $(IDL:.idl=.h)
+GENERATED_C_FILES      += $(IDL:.idl=Dcps.h)
+GENERATED_C_FILES      += $(IDL:.idl=SacDcps.h)
+GENERATED_C_FILES      += $(IDL:.idl=SacDcps.c)
+GENERATED_C_FILES      += $(IDL:.idl=SplDcps.h)
+GENERATED_C_FILES      += $(IDL:.idl=SplDcps.c)
+GENERATED_C_OBJS       := $(IDL:.idl=SacDcps.o)
+GENERATED_C_OBJS       += $(IDL:.idl=SplDcps.o)
+DDS_C_INCLUDE_DIRS     := $(OSPL_HOME)/include/dcps/C/SAC $(OSPL_HOME)/include/sys $(OSPL_HOME)/include
+DDS_C_LIBS             := dcpssac dcpsgapi ddsutil ddsdatabase ddsuser ddskernel ddsserialization ddsconf ddsconfparser ddsos 
+
+GENERATED_CPP_FILES    := $(IDL:.idl=.h)
+GENERATED_CPP_FILES    += $(IDL:.idl=.cpp)
+GENERATED_CPP_FILES    += $(IDL:.idl=Dcps.h)
+GENERATED_CPP_FILES    += $(IDL:.idl=Dcps.cpp)
+GENERATED_CPP_FILES    += $(IDL:.idl=Dcps_impl.h)
+GENERATED_CPP_FILES    += $(IDL:.idl=Dcps_impl.cpp)
+GENERATED_CPP_FILES    += $(IDL:.idl=SplDcps.h)
+GENERATED_CPP_FILES    += $(IDL:.idl=SplDcps.cpp)
+GENERATED_CPP_FILES    += ccpp_$(IDL:.idl=.h)
+GENERATED_CPP_OBJS     := $(IDL:.idl=.o)
+GENERATED_CPP_OBJS     += $(IDL:.idl=Dcps.o)
+GENERATED_CPP_OBJS     += $(IDL:.idl=Dcps_impl.o)
+GENERATED_CPP_OBJS     += $(IDL:.idl=SplDcps.o)
+DDS_CPP_INCLUDE_DIRS   := $(OSPL_HOME)/include/dcps/C++/SACPP $(OSPL_HOME)/include/sys $(OSPL_HOME)/include
+DDS_CPP_LIBS           := dcpssacpp dcpsgapi ddsutil ddsdatabase ddsuser ddskernel ddsserialization ddsconf ddsconfparser ddsos
+
+DDS_LIB_DIRS           := $(OSPL_HOME)/lib
+
+GENERATED_JAVA_OBJS    += DDSTouchStone/writerStatusHolder.class
+GENERATED_JAVA_OBJS    += DDSTouchStone/writerStatus.class
+
+DDS_JARS               := $(OSPL_HOME)/jar/dcpssaj.jar
