@@ -67,7 +67,7 @@ Partition::process_transmitter_def(const transmitterDef& def)
   if (iter == m_transmitters.end())
     {
       Transmitter* transmitter = new Transmitter(*this);
-      m_transmitters.insert(make_pair(def.transmitter_id,
+      m_transmitters.insert(std::make_pair(def.transmitter_id,
 				      transmitter));
       transmitter->create(def);
     }
@@ -112,7 +112,7 @@ Partition::process_receiver_def(const receiverDef& def)
   if (iter == m_receivers.end())
     {
       Receiver* receiver = new Receiver(*this);
-      m_receivers.insert(make_pair(def.receiver_id,
+      m_receivers.insert(std::make_pair(def.receiver_id,
 				   receiver));
       receiver->create(def);
     }
@@ -157,7 +157,7 @@ Partition::process_transceiver_def(const transceiverDef& def)
   if (iter == m_transceivers.end())
     {
       Transceiver* transceiver = new Transceiver(*this);
-      m_transceivers.insert(make_pair(def.transceiver_id,
+      m_transceivers.insert(std::make_pair(def.transceiver_id,
 				      transceiver));
       transceiver->create(def);
     }
@@ -202,7 +202,7 @@ Partition::process_transponder_def(const transponderDef& def)
   if (iter == m_transponders.end())
     {
       Transponder* transponder = new Transponder(*this);
-      m_transponders.insert(make_pair(def.transponder_id,
+      m_transponders.insert(std::make_pair(def.transponder_id,
 				      transponder));
       transponder->create(def);
     }

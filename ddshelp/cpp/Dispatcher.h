@@ -178,7 +178,7 @@ namespace DDSHelp
       {
 	throw DDSError("CONDITION_ALREADY_ATTACHED", "Dispatcher::attach_condition");
       }
-    m_conditions.insert(make_pair(DDS::Condition::_duplicate(condition), function));
+    m_conditions.insert(std::make_pair(DDS::Condition::_duplicate(condition), function));
 
     DDS::ReturnCode_t retcode = m_waitset.attach_condition(condition);
     if (retcode != DDS::RETCODE_OK)

@@ -448,7 +448,7 @@ Processor::read_transmitter_def(Condition_ptr condition)
 	    {
 	      partition = new Partition(*this,
 					def.partition_id);
-	      m_partitions.insert(make_pair(def.partition_id,
+	      m_partitions.insert(std::make_pair(def.partition_id,
 					    partition));
 	    }
 	  else
@@ -557,7 +557,7 @@ Processor::read_receiver_def(Condition_ptr condition)
 	    {
 	      partition = new Partition(*this,
 					def.partition_id);
-	      m_partitions.insert(make_pair(def.partition_id,
+	      m_partitions.insert(std::make_pair(def.partition_id,
 					    partition));
 	    }
 	  else
@@ -666,7 +666,7 @@ Processor::read_transceiver_def(Condition_ptr condition)
 	    {
 	      partition = new Partition(*this,
 					def.partition_id);
-	      m_partitions.insert(make_pair(def.partition_id,
+	      m_partitions.insert(std::make_pair(def.partition_id,
 					    partition));
 	    }
 	  else
@@ -775,7 +775,7 @@ Processor::read_transponder_def(Condition_ptr condition)
 	    {
 	      partition = new Partition(*this,
 					def.partition_id);
-	      m_partitions.insert(make_pair(def.partition_id,
+	      m_partitions.insert(std::make_pair(def.partition_id,
 					    partition));
 	    }
 	  else

@@ -1,0 +1,57 @@
+// -*- MPC -*-
+// $Id:$
+
+project (watcher) : touch_base, sac_typesupport, c_or_cplusplus_example {
+    TypeSupport_Files {
+        $(TOUCH_ROOT)/idl
+    }
+    Source_Files {
+        watcher.c
+    }
+    exename = *
+}
+
+project (errorlog) : touch_base, sac_typesupport, c_or_cplusplus_example {
+    after += watcher
+    TypeSupport_Files {
+        $(TOUCH_ROOT)/idl
+    }
+    Source_Files {
+        errorlog.c
+    }
+    exename = *
+}
+
+project (excelerator) : touch_base, sac_typesupport, c_or_cplusplus_example {
+    after += errorlog
+    TypeSupport_Files {
+        $(TOUCH_ROOT)/idl
+    }
+    Source_Files {
+        excelerator.c
+    }
+    exename = *
+}
+
+project (recorder) : touch_base, sac_typesupport, c_or_cplusplus_example {
+    after += excelerator
+    TypeSupport_Files {
+        $(TOUCH_ROOT)/idl
+    }
+    Source_Files {
+        recorder.c
+        commandHelpers.c
+    }
+    exename = *
+}
+
+project (spotter) : touch_base, sac_typesupport, c_or_cplusplus_example {
+    after += recorder
+    TypeSupport_Files {
+        $(TOUCH_ROOT)/idl
+    }
+    Source_Files {
+        spotter.c
+    }
+    exename = *
+}
