@@ -593,7 +593,6 @@ main (
     DDS_TopicQos *tQos;
     DDS_DataReaderQos *rQos;
     int length, i, proceed;
-    char input;
 
     ExceleratorId._maximum   = 1;
     ExceleratorId._length    = 1;

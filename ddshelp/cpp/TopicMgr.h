@@ -43,7 +43,7 @@ namespace DDSHelp
     { assert(m_topic_description); return m_topic_description; }
 
     operator bool()
-    { return m_topic_description; }
+    { return m_topic_description != 0; }
 
     ParticipantMgr&
     participant()
@@ -88,7 +88,7 @@ namespace DDSHelp
     { assert(m_topic); return m_topic; }
 
     operator bool()
-    { return m_topic; }
+    { return m_topic.in() != 0; }
 
     void
     create(const char* topic_name,
@@ -148,7 +148,7 @@ namespace DDSHelp
     { assert(m_filtered_topic); return m_filtered_topic; }
 
     operator bool()
-    { return m_filtered_topic; }
+    { return m_filtered_topic.in() != 0; }
 
     void
     create(const char* topic_name,

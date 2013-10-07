@@ -46,7 +46,7 @@ namespace DDSHelp
     { assert(m_writer_base); return m_writer_base; }
 
     operator bool()
-    { return m_writer_base; }
+    { return m_writer_base.in() != 0; }
 
     void
     check(DDS::ReturnCode_t retcode,
@@ -100,7 +100,7 @@ namespace DDSHelp
     { assert(m_writer); return m_writer; }
 
     operator bool()
-    { return m_writer; }
+    { return m_writer != 0; }
 
     void
     create(const DDS::DataWriterQos& writer_qos

@@ -47,7 +47,7 @@ namespace DDSHelp
     { assert(m_participant); return m_participant; }
 
     operator bool()
-    { return m_participant; }
+    { return m_participant.in() != 0; }
 
     void
     create(DDS::DomainId_t domain_id,

@@ -41,7 +41,7 @@ namespace DDSHelp
     { assert(m_entity); return m_entity; }
 
     operator bool()
-    { return m_entity; }
+    { return m_entity != 0; }
 
   protected:
     EntityMgr()

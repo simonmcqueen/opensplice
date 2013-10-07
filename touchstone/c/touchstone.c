@@ -300,8 +300,6 @@ receiver_report(
     double period,
     DDSTouchStone_receiverReport *report)
 {
-    double count;
-
     report->read_bytes_per_second = 1000.0*(_this->byte_count)/period;
     report->read_msgs_per_second = 1000.0*(_this->msg_count)/period;
     _this->byte_count = 0;
@@ -1874,7 +1872,6 @@ process_transmitterDef (
     DDS_StringSeq TransmitterId;
     touchstone_os_result result;
     char id[32];
-    DDSTouchStone_timestamp timestamp;
     touchstone_os_time interval;
 
     p = lookup_participant(msg->partition_id);
@@ -2677,7 +2674,6 @@ process_receiverDef (
     DDS_StringSeq ReceiverId;
     touchstone_os_result result;
     char id[32];
-    DDSTouchStone_timestamp timestamp;
 
     p = lookup_participant(msg->partition_id);
     if (p == NULL) {

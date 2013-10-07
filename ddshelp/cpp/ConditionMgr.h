@@ -44,7 +44,7 @@ namespace DDSHelp
     { assert(m_condition); return m_condition; }
 
     operator bool()
-    { return m_condition; }
+    { return m_condition != 0; }
 
   protected:
     ConditionMgr()
@@ -105,7 +105,7 @@ namespace DDSHelp
     { assert(m_status_condition); return m_status_condition; }
 
     operator bool()
-    { return m_status_condition; }
+    { return m_status_condition.in() != 0; }
 
     void
     get();
@@ -137,7 +137,7 @@ namespace DDSHelp
     { assert(m_read_condition); return m_read_condition; }
 
     operator bool()
-    { return m_read_condition; }
+    { return m_read_condition.in() != 0; }
 
     void
     create(DDS::SampleStateMask sample_states,
@@ -171,7 +171,7 @@ namespace DDSHelp
     { assert(m_query_condition); return m_query_condition; }
 
     operator bool()
-    { return m_query_condition; }
+    { return m_query_condition.in() != 0; }
 
     void
     create(DDS::SampleStateMask sample_states,

@@ -104,6 +104,10 @@ DDSTouchStone_DataWriterQosPrint(
 {
     int size;
 
+#if _MSC_VER
+#define snprintf _snprintf
+#endif
+
     size = snprintf(buffer, bufferSize,
         "latency_budget= { sec=%d nanosec=%d } "
         "transport_priority=%d",

@@ -51,7 +51,7 @@ namespace DDSHelp
     { assert(m_subscriber); return m_subscriber; }
 
     operator bool()
-    { return m_subscriber; }
+    { return m_subscriber.in() != 0; }
 
     ParticipantMgr&
     participant()

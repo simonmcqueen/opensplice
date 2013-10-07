@@ -252,7 +252,7 @@ fprintDDSTouchStoneCommand(
     FILE *stream,
     fileData *fdata)
 {
-    int status;
+    size_t status;
     if (!binary_mode) {
         if (fdata->kind != STOP) {
             fprintf(logfile, "DDSTouchStoneCommand= { %s }\n", fileDataToString(fdata));
@@ -322,7 +322,7 @@ fscanDDSTouchStoneCommand(
     fileData *fdata,
     int *success)
 {
-    int length;
+    size_t length;
 
     *success = !feof(stream);
     if (*success) {

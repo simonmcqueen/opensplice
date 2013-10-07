@@ -639,7 +639,7 @@ Transceiver::Metrics::report(double percentile,
 {
   report.percentile = percentile;
 
-  int count = m_stamps.size();
+  std::size_t count = m_stamps.size();
   if (!count)
     {
       report.sample_count = 0;

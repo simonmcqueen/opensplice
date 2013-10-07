@@ -140,7 +140,7 @@ namespace DDSHelp
 	  }
 
 	//      cout << "wait() returned " << conditions.length() << " conditions" << endl;
-	for (int i = 0; i < conditions.length(); i++)
+	for (unsigned int i = 0; i < conditions.length(); i++)
 	  {
 	    DDS::Condition_ptr condition = conditions[i];
 	    //	  cout << "condition: " << condition << endl;

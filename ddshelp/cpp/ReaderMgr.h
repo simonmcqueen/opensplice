@@ -46,7 +46,7 @@ namespace DDSHelp
     { assert(m_reader_base); return m_reader_base; }
 
     operator bool()
-    { return m_reader_base; }
+    { return m_reader_base.in() != 0; }
 
     void
     check(DDS::ReturnCode_t retcode,
@@ -100,7 +100,7 @@ namespace DDSHelp
     { assert(m_reader); return m_reader; }
 
     operator bool()
-    { return m_reader; }
+    { return m_reader != 0; }
 
     void
     create(const DDS::DataReaderQos& reader_qos

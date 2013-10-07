@@ -304,7 +304,7 @@ Transmitter::writer_thread()
 	  message.write_timestamp = processor().get_timestamp();
 
 	  // write burst of messages
-          for (int index = 0; index < m_def.messages_per_burst; index++) {
+          for (unsigned int index = 0; index < m_def.messages_per_burst; index++) {
               message.instance_id = index;
 	      ReturnCode_t retcode = m_writer->write(message,
 						     0);
