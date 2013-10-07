@@ -107,6 +107,10 @@ get_timestamp_from_dds_time(
     return timestamp;
 }
 
+#if _MSC_VER
+#define snprintf _snprintf
+#endif
+
 static void
 report_reader_status (
     DDSTouchStone_readerStatus *status)

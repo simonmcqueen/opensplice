@@ -9,5 +9,7 @@ project (*c) : touch_base, sac_typesupport, c_or_cplusplus_example {
         .
     }
     exename = *
-    libs += m
+    specific (! prop:windows) {
+        libs += m
+    }
 }

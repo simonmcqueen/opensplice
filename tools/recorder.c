@@ -140,6 +140,10 @@ boolToStr(
     return result;
 }
 
+#if _MSC_VER
+#define strcasecmp strcmpi
+#endif
+
 static DDS_boolean
 strToBool(
     const char *str)
