@@ -6,9 +6,10 @@ project (*cpp) : touch_base, sacpp_typesupport, c_or_cplusplus_example {
         $(TOUCH_ROOT)/idl
     }
     Source_Files {
-        $(TOUCH_ROOT)/ddshelp/cpp
-        .
+        $(TOUCH_ROOT)/ddshelp/cpp/*.cpp
+        *.cpp
     }
+
     includes += $(TOUCH_ROOT)/ddshelp/cpp
     exename = *
 }
