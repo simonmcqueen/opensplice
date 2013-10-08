@@ -1,0 +1,105 @@
+#
+# DDSTouchStone: a scenario-driven Open Source benchmarking framework
+# for evaluating the performance of OMG DDS compliant implementations.
+#
+# Copyright (C) 2008-2009 PrismTech Ltd.
+# ddstouchstone@prismtech.com
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License Version 3 dated 29 June 2007, as published by the
+# Free Software Foundation.
+
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with DDSTouchStone; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+include $(CONFIG_DIR)/Makefile.defs_cpp
+
+.PHONY: clean
+
+STAMP_NAME	 := .STAMP
+
+TOUCHSTONE       := touchstone
+TOUCHSTONE_DIR	 := $(TOUCHSTONE)/cpp
+TOUCHSTONE_ITEMS := Main
+TOUCHSTONE_ITEMS += Partition
+TOUCHSTONE_ITEMS += Processor
+TOUCHSTONE_ITEMS += Receiver
+TOUCHSTONE_ITEMS += Transceiver
+TOUCHSTONE_ITEMS += Transmitter
+TOUCHSTONE_ITEMS += Transponder
+
+DDSHELP          := ddshelp
+DDSHELP_DIR      := $(DDSHELP)/cpp
+DDSHELP_ITEMS    := ConditionMgr
+DDSHELP_ITEMS    += DDSError
+DDSHELP_ITEMS    += ParticipantMgr
+DDSHELP_ITEMS    += PublisherMgr
+DDSHELP_ITEMS    += ReaderMgr
+DDSHELP_ITEMS    += SubscriberMgr
+DDSHELP_ITEMS    += TopicMgr
+DDSHELP_ITEMS    += WriterMgr
+
+TOUCHSTONE_OBJS  := $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(TOUCHSTONE_ITEMS)))
+TOUCHSTONE_BIN   := $(addprefix $(BIN_CONFIG_DIR)/, $(TOUCHSTONE)_cpp)
+DDSHELP_OBJS     := $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(DDSHELP_ITEMS)))
+GEN_DIR          := $(GEN_BASE_DIR)/cpp
+GEN_FILES	 := $(addprefix $(GEN_DIR)/,$(GENERATED_CPP_FILES))
+GEN_OBJ_DIR      := $(OBJ_DIR)/cpp
+GEN_OBJS	 := $(addprefix $(GEN_OBJ_DIR)/, $(GENERATED_CPP_OBJS))
+
+#funtions for easily passing parms to the compiler/linker
+idirs 	= $(addprefix -I, $(1))
+ldirs	= $(addprefix -L, $(1))
+llibs	= $(addprefix -l, $(1))
+
+
+all: link
+link: compile $(BIN_CONFIG_DIR)/$(STAMP_NAME) $(TOUCHSTONE_BIN)
+compile: generated $(OBJ_DIR)/$(STAMP_NAME) $(GEN_OBJ_DIR)/$(STAMP_NAME) $(GEN_OBJS) $(OS_OBJS) $(TOUCHSTONE_OBJS) $(DDSHELP_OBJS)
+generated: $(GEN_DIR)/$(STAMP_NAME) $(GEN_FILES)
+
+#.PRECIOUS: $(OBJ_DIR)/%.o
+
+$(GEN_FILES): $(GEN_DIR)/$(STAMP_NAME) $(IDL_NAME)
+	@echo Creating type-specific C++ code from $(IDL_DIR)/$(IDL); \
+	sh $(TOUCHSTONE_HOME)/$(SCRIPTS_DIR)/$(DDS_VENDOR)/idlCompilation.sh $(IDL_DIR)/$(IDL) $(GEN_DIR) cpp "$(call idirs, $(IDL_DIR) $(DDS_CPP_INCLUDE_DIRS))"
+
+$(GEN_OBJ_DIR)/%.o:$(GEN_DIR)/%.cpp
+	@echo Compiling generated file $<; \
+	$(CPP_COMPILER) $(CPP_COPTIONS) -c $< -o $@ $(call idirs, $(DDS_CPP_INCLUDE_DIRS))
+
+$(OBJ_DIR)/%.o:$(OS_DIR)/%.c
+	@echo Compiling OS abstraction layer file $<; \
+	$(CPP_COMPILER) $(CPP_COPTIONS) -c $< -o $@ $(call idirs, $(OS_INCLUDE_DIRS) $(DDS_C_INCLUDE_DIRS))
+
+$(OBJ_DIR)/%.o:$(TOUCHSTONE_DIR)/%.cpp
+	@echo Compiling touchstone file $<; \
+	$(CPP_COMPILER) $(CPP_COPTIONS) -c $< -o $@ $(call idirs, $(OS_INCLUDE_DIRS) $(VENDOR_INCLUDE_DIRS) $(GEN_DIR) $(DDSHELP_DIR) $(DDS_CPP_INCLUDE_DIRS))
+
+$(OBJ_DIR)/%.o:$(DDSHELP_DIR)/%.cpp
+	@echo Compiling ddshelp file $<; \
+	$(CPP_COMPILER) $(CPP_COPTIONS) -c $< -o $@ $(call idirs, $(OS_INCLUDE_DIRS) $(VENDOR_INCLUDE_DIRS)  $(DDSHELP_DIR) $(DDS_CPP_INCLUDE_DIRS))
+
+$(TOUCHSTONE_BIN):$(TOUCHSTONE_OBJS) $(DDSHELP_OBJS) $(GEN_OBJS) $(OS_OBJS)
+	@echo Linking touchstone executable $@; \
+	$(CPP_LINKER) $(CPP_LINKOPTS) $(TOUCHSTONE_OBJS) $(DDSHELP_OBJS) $(GEN_OBJS) $(OS_OBJS) $(call ldirs, $(DDS_LIB_DIRS)) $(call llibs, $(DDS_CPP_LIBS)) $(call llibs, $(CPP_SYSLIBS)) -o $@
+
+
+%/$(STAMP_NAME):
+	@mkdir -p $(@D); \
+	touch $@
+
+ALL_FILES :=  $(TOUCHSTONE_BIN) $(TOUCHSTONE_OBJS) $(DDSHELP_OBJS)
+
+clean:
+	@for ff in $(ALL_FILES); do if test -f $$ff; then echo Removing file $$ff; rm $$ff; fi; done; 
+
+#dependencies are filled manually here... 
+#TODO

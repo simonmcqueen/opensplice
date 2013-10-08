@@ -1,0 +1,16 @@
+// -*- MPC -*-
+// $Id:$
+
+project {
+  includes += $(TOUCH_ROOT)/os/include $(TOUCH_ROOT)/os/OpenSpliceDDS
+  includes += $(TOUCH_ROOT)/vendor/include $(TOUCH_ROOT)/vendor/OpenSpliceDDS
+  exeout = $(TOUCH_ROOT)/bin
+  Source_Files {
+    $(TOUCH_ROOT)/os/OpenSpliceDDS
+  }
+  Documentation_Files {
+    $(TOUCH_ROOT)/README*
+    $(TOUCH_ROOT)/documentation/*
+  }
+
+}

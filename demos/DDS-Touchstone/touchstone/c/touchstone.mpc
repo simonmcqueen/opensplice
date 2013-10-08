@@ -1,0 +1,15 @@
+// -*- MPC -*-
+// $Id:$
+
+project (*c) : touch_base, sac_typesupport, c_or_cplusplus_example {
+    TypeSupport_Files {
+        $(TOUCH_ROOT)/idl
+    }
+    Source_Files {
+        .
+    }
+    exename = *
+    specific (! prop:windows) {
+        libs += m
+    }
+}
