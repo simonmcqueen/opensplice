@@ -55,6 +55,7 @@ examplempc:
 
 demosmpc:
 	mwc.pl --type $(MPC_CISH_TYPE_TO_GEN) $(MPC_CISH_ARGS) --ospl-home "$(GEN_OSPL_HOME)" HDE/$(HDE_SUBDIR)$(HDE_SUBDIR_SUFFIX)/demos/iShapes
+	mwc.pl --type $(MPC_CISH_TYPE_TO_GEN) $(MPC_CISH_ARGS) --ospl-home "$(GEN_OSPL_HOME)" --relative TOUCH_ROOT=$(GEN_OSPL_HOME)/demos/DDS-Touchstone --include $(GEN_OSPL_HOME)/demos/DDS-Touchstone/MPC/config HDE/$(HDE_SUBDIR)$(HDE_SUBDIR_SUFFIX)/demos/DDS-Touchstone
 
 clean:
 	@rm -rf HDE RTS VC
