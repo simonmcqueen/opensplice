@@ -300,8 +300,8 @@ receiver_report(
     double period,
     DDSTouchStone_receiverReport *report)
 {
-    report->read_bytes_per_second = 1000.0*(_this->byte_count)/period;
-    report->read_msgs_per_second = 1000.0*(_this->msg_count)/period;
+    report->read_bytes_per_second = (DDS_unsigned_long) (1000.0*(_this->byte_count)/period);
+    report->read_msgs_per_second = (DDS_unsigned_long)  (1000.0*(_this->msg_count)/period);
     _this->byte_count = 0;
     _this->msg_count = 0;
 }
@@ -1337,7 +1337,7 @@ create_participant (
         pQos->partition.name._length = 1;
         pQos->partition.name._maximum = 1;
         pQos->partition.name._buffer = DDS_StringSeq_allocbuf (1);
-        pQos->partition.name._buffer[0] = DDS_string_alloc(strlen(partitionName));
+        pQos->partition.name._buffer[0] = DDS_string_alloc((DDS_unsigned_long) strlen(partitionName));
         strcpy (pQos->partition.name._buffer[0], partitionName);
 
         p->publisher = DDS_DomainParticipant_create_publisher (
@@ -1372,7 +1372,7 @@ create_participant (
         sQos->partition.name._length = 1;
         sQos->partition.name._maximum = 1;
         sQos->partition.name._buffer = DDS_StringSeq_allocbuf (1);
-        sQos->partition.name._buffer[0] = DDS_string_alloc(strlen(partitionName));
+        sQos->partition.name._buffer[0] = DDS_string_alloc((DDS_unsigned_long) strlen(partitionName));
         strcpy (sQos->partition.name._buffer[0], partitionName);
 
         p->subscriber = DDS_DomainParticipant_create_subscriber (

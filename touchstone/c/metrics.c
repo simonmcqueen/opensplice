@@ -72,7 +72,7 @@ metrics_report (
         report->maximum = 0;
         report->deviation = 0;
     } else {
-        rng = (cnt*prc)/100;
+        rng = (int) ((cnt*prc)/100);
         min = lst[0];
         max = lst[rng-1];
         sum = 0.0;
